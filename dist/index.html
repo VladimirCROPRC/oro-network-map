@@ -30,6 +30,7 @@
     .map-style{margin-top:8px;padding:7px 10px}.map-style-title{font-size:.75rem;margin-bottom:2px}.map-style .leaflet-control-layers label{padding:4px 0}.map-style .leaflet-control-layers{font-size:.8125rem}
     .hint{margin-top:5px}.toolbar{padding:8px 10px}.layer-search{padding:7px 9px;font-size:.875rem}
     @media(max-width:700px){.portal-button,.location-button,.map-actions button,.place-form button,.asset-form button,.site-form button{min-height:40px}.place-input,.asset-input,.site-input{min-height:40px}.map-style .leaflet-control-layers label{padding:5px 0}}
+    .olt-app-link{display:block;margin-top:6px;padding:7px 10px;text-align:center;text-decoration:none;color:#eafaff;background:#173642;border:1px solid #ffffff20;border-radius:8px;font-size:.875rem;font-weight:700}.olt-app-link:hover{background:#204652}.sidebar.collapsed .olt-app-link{display:none}
   </style>
 </head>
 <body>
@@ -37,6 +38,7 @@
   <aside class="sidebar" id="sidebar" aria-label="Căutare și layere">
     <header><div class="title-row"><h1>ORO Network Map</h1><button class="collapse" id="collapse" aria-label="Restrânge panoul">⌄</button></div><div class="summary"><span id="layer-total">Se încarcă…</span><span id="result-total">Toate selectate</span></div>
       <a class="portal-button" href="https://portal.proconect.online" target="_blank" rel="noopener noreferrer">Portal PRO APPS</a>
+      <a class="olt-app-link" href="http://olt.proconect.online/" target="_blank" rel="noopener noreferrer">OLT ORO ↗</a>
       <form class="place-form" id="place-form"><input class="place-input" id="place" required placeholder="Adresă sau 44.4268, 26.1025" aria-label="Adresă sau coordonate"><button type="submit">Caută</button></form>
       <button class="location-button" id="locate-me" type="button">⌖ Locația mea</button>
       <div class="map-style" id="map-style" role="group" aria-label="Stil hartă"><span class="map-style-title">Stil hartă</span></div>
