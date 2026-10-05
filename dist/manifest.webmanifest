@@ -1,0 +1,18 @@
+{
+  "id": "/",
+  "name": "ORO Network Map",
+  "short_name": "ORO Map",
+  "description": "Hartă de infrastructură Orange cu localizare și căutare după ORO Alias.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["fullscreen", "standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#061017",
+  "theme_color": "#061017",
+  "categories": ["business", "navigation", "utilities"],
+  "icons": [
+    {"src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+    {"src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+  ]
+}

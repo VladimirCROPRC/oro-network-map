@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "online.proconect.oro.twa",
+      "sha256_cert_fingerprints": [
+        "24:47:21:E0:DE:BE:4E:4F:97:D5:28:BD:90:53:CA:0E:CD:B5:E0:05:F4:A1:88:AB:C1:FA:A7:9F:7A:B5:22:12"
+      ]
+    }
+  }
+]

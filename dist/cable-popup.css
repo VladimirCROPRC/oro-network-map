@@ -1,0 +1,8 @@
+.cable-popup .leaflet-popup-content-wrapper{background:#fff;color:#000;border-radius:0;box-shadow:0 2px 8px #0006}
+.cable-popup .leaflet-popup-tip{background:#fff}
+.cable-popup .leaflet-popup-content{margin:30px 15px 15px;width:min(375px,calc(100vw - 70px))!important;font:12px/1.25 Arial,sans-serif}
+.cable-popup .leaflet-popup-close-button{color:#222;font-size:22px}
+.cable-popup-title{font-size:14px;font-weight:700;margin:0 0 14px;overflow-wrap:anywhere}
+.cable-popup-table{width:100%;border:1px solid #333;border-spacing:2px;table-layout:fixed}
+.cable-popup-table th,.cable-popup-table td{border:1px solid #777;padding:2px;text-align:left;vertical-align:top;font-weight:400;overflow-wrap:anywhere}
+.cable-popup-table th{width:49%}
