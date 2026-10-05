@@ -18,7 +18,7 @@ def owner_group(owner):
 
 def color_for(equipment,owner):
     text=normalize(equipment)
-    if 'spt' in text:return COLORS['red']
+    if 'spt' in text or 'spl' in text:return COLORS['red']
     if 'osc' in text:return COLORS['green']
     return COLORS[{'oro':'orange','oroc':'pink','third-party':'blue'}[owner_group(owner)]]
 
