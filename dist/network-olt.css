@@ -70,3 +70,5 @@ body{background:#f5f8fa;color:#19313e}
 @media(max-width:700px){.olt-workspace .port-selections label{min-height:44px}.olt-workspace .odb-item{min-height:44px}}
 
 .olt-workspace .olt-port:not([open])>summary::before{transform:rotate(0)}
+
+.panel-location{flex:none;margin:8px 12px;padding:9px 12px;min-height:42px;background:#edf3f7;color:#19313e;border:1px solid #d9e3e9;border-radius:8px;font-size:14px;cursor:pointer}.panel-location:disabled{opacity:.6}.sidebar.collapsed .panel-location{display:none}

@@ -1,6 +1,6 @@
 (function(){
 'use strict';
-const DATA_VERSION='20261008-integrated-4';
+const DATA_VERSION='20261008-integrated-5';
 let fiberAlarms=[],oltAlarmAliases={};
 function alarmOltName(name){const value=name.trim().toUpperCase();return (oltAlarmAliases[value]||value).trim().toUpperCase()}
 function selectAlarmOlts(){if(!selectedData)return;for(const olt of selectedData.olts){if(olt.ports.some(p=>alarmsForPort(olt.name,p.port).length))selectedOlts.add(olt.name)}}
