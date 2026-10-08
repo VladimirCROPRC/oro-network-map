@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Hartă de infrastructură telecom cu puncte Orange și căutare după ORO Alias.">
-  <meta name="theme-color" content="#061017">
+  <meta name="theme-color" content="#ffffff">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -32,7 +32,7 @@
     @media(max-width:700px){.portal-button,.location-button,.map-actions button,.place-form button,.asset-form button,.site-form button{min-height:40px}.place-input,.asset-input,.site-input{min-height:40px}.map-style .leaflet-control-layers label{padding:5px 0}}
     .olt-app-link{display:block;margin-top:6px;padding:7px 10px;text-align:center;text-decoration:none;color:#eafaff;background:#173642;border:1px solid #ffffff20;border-radius:8px;font-size:.875rem;font-weight:700}.olt-app-link:hover{background:#204652}.sidebar.collapsed .olt-app-link{display:none}
   </style>
-<link rel="stylesheet" href="network-olt.css?v=20261008-integrated-2"></head>
+<link rel="stylesheet" href="network-olt.css?v=20261008-integrated-3"></head>
 <body>
   <div id="map" role="application" aria-label="Hartă satelitară cu rezultate într-o rază de 10 kilometri"></div>
   <aside class="sidebar" id="sidebar" aria-label="Căutare și layere">
@@ -113,7 +113,7 @@ document.addEventListener("click",event=>{const button=event.target.closest(".op
 function networkSiteLinks(lat,lng){const point=encodeURIComponent(lat+','+lng);return '<div class="location-links"><a href="https://www.google.com/maps/search/?api=1&query='+point+'" target="_blank" rel="noopener noreferrer">Google Maps</a><a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint='+point+'" target="_blank" rel="noopener noreferrer">Street View</a></div>'}
 window.NetworkMapBridge={map,
  showPanel(name){document.querySelectorAll('[data-workspace-panel]').forEach(button=>{const on=button.dataset.workspacePanel===name;button.classList.toggle('selected',on);button.setAttribute('aria-selected',String(on))});for(const id of ['network','olt','tools'])document.getElementById(id+'-pane').hidden=id!==name;map.invalidateSize()},
- fitOptions(){return matchMedia('(max-width:700px)').matches?{paddingTopLeft:[24,30],paddingBottomRight:[24,document.getElementById('sidebar').getBoundingClientRect().height+25],maxZoom:16}:{padding:[30,30],maxZoom:16}},
+ fitOptions(){return matchMedia('(max-width:700px)').matches?{paddingTopLeft:[24,30],paddingBottomRight:[24,(document.getElementById('sidebar').classList.contains('collapsed')?89:30)],maxZoom:16}:{padding:[30,30],maxZoom:16}},
  async focusSite(point,label){const run=this.focusRun=(this.focusRun||0)+1;for(let i=0;!manifest&&i<100;i++)await new Promise(r=>setTimeout(r,100));if(manifest&&run===this.focusRun)await searchArea({lat:point[0],lng:point[1]},label,{pin:false,fit:false})}
 };
 document.querySelectorAll('[data-workspace-panel]').forEach(button=>button.addEventListener('click',()=>window.NetworkMapBridge.showPanel(button.dataset.workspacePanel)));
@@ -122,4 +122,4 @@ document.getElementById('collapse').addEventListener('click',event=>{const expan
 
     if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("service-worker.js").catch(()=>{}));
   </script>
-<script src="network-olt.js?v=20261008-integrated-2"></script></body></html>
+<script src="network-olt.js?v=20261008-integrated-3"></script></body></html>
