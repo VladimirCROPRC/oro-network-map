@@ -1,0 +1,1 @@
+{"code":"","name":"SB_SB_BALCESCU_OLT_MA5800_X17_4","location":null,"olts":[{"name":"SB_SB_BALCESCU_OLT_MA5800_X17_4","ports":[{"port":"1/1","speeds":["2.5 G"],"references":1,"functions":{"SPL-1":1},"dps":[{"alias":"S35_FAN_SB-CEN_04","lat":45.7919964952,"lng":24.1061024568,"orocAlias":"","nodeCode":""}],"odbs":[]}]}]}

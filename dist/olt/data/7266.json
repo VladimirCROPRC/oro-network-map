@@ -1,0 +1,1 @@
+{"code":"","name":"HD_LAPUGIU_OLT_MA5600T_1","location":null,"olts":[{"name":"HD_LAPUGIU_OLT_MA5600T_1","ports":[{"port":"Sl.1/7","speeds":["2.5 G"],"references":1,"functions":{"SPL-2":1},"dps":[],"odbs":[{"alias":"HD_GRIND_2265S_ODB21_2","lat":45.9131221571,"lng":22.5024086471,"orocAlias":"HD_GRIND_2265S_ODB21_2","nodeCode":"2265S","id":"248622597"}]}]}]}

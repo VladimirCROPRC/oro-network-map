@@ -1,0 +1,1 @@
+{"code":"","name":"SB_CISNADIE_OLT_MA5600T_1","location":null,"olts":[{"name":"SB_CISNADIE_OLT_MA5600T_1","ports":[{"port":"Sl.6/7","speeds":["2.5 G"],"references":1,"functions":{"SPL-2":1},"dps":[],"odbs":[{"alias":"SP3306655","lat":45.7097714572,"lng":24.1415108154,"orocAlias":"","nodeCode":"334XJ","id":"401564179"}]}]}]}

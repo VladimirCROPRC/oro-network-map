@@ -1,0 +1,1 @@
+{"code":"","name":"SB_CRISTIAN_OLT_MA5608T_1","location":null,"olts":[{"name":"SB_CRISTIAN_OLT_MA5608T_1","ports":[{"port":"Sl.0/9","speeds":["2.5 G"],"references":1,"functions":{"SPL-2":1},"dps":[],"odbs":[{"alias":"SP3304997","lat":45.7804988603,"lng":24.0287556029,"orocAlias":"SB_CRISTIAN_3377T_ODB30271_1","nodeCode":"3377T","id":"401500731"}]}]}]}

@@ -1,0 +1,1 @@
+{"code":"","name":"MM_TG_LAPUS_OLT_MA5800_X17_2","location":null,"olts":[{"name":"MM_TG_LAPUS_OLT_MA5800_X17_2","ports":[{"port":"1/1","speeds":["2.5 G"],"references":1,"functions":{"SPL-1":1},"dps":[{"alias":"CL5955FAN8OSC1DP1SPL1","lat":47.4458981007,"lng":23.8760487528,"orocAlias":"","nodeCode":""}],"odbs":[]}]}]}

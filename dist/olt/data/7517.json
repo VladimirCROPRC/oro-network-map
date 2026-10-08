@@ -1,0 +1,1 @@
+{"code":"","name":"VS_BARLAD_OLT_MA5600T_2","location":null,"olts":[{"name":"VS_BARLAD_OLT_MA5600T_2","ports":[{"port":"Sl.1/12","speeds":["2.5 G"],"references":1,"functions":{"SPL-2":1},"dps":[],"odbs":[{"alias":"BA5951FAN4ODC225_SPL1","lat":46.2346382607,"lng":27.6703079762,"orocAlias":"","nodeCode":"381PA","id":"570174871"}]}]}]}

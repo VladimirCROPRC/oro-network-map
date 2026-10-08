@@ -1,0 +1,1 @@
+{"code":"ZZ0001","name":"","location":null,"olts":[{"name":"ZZ0001OLT0011","ports":[{"port":"1/0","speeds":["2.5 G"],"references":2,"functions":{"SPL-1":1,"SPL-2":1},"dps":[{"alias":"spl-1","lat":44.0418623891,"lng":26.3926493545,"orocAlias":"","nodeCode":""}],"odbs":[{"alias":"spl-2","lat":44.0418896311,"lng":26.3928304857,"orocAlias":"","nodeCode":"","id":"561684371"}]}]}]}

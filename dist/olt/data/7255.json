@@ -1,0 +1,1 @@
+{"code":"","name":"GR_CREVEDIA_MARE_OLT_MA5600T_1","location":null,"olts":[{"name":"GR_CREVEDIA_MARE_OLT_MA5600T_1","ports":[{"port":"Sl.4/0","speeds":["2.5 G"],"references":1,"functions":{"SPL-1":1},"dps":[{"alias":"S11_FAN_GR-MSP_01","lat":44.4434759180671,"lng":25.71516938252726,"orocAlias":"","nodeCode":""}],"odbs":[]}]}]}

@@ -1,0 +1,1 @@
+{"code":"","name":"MM_BM_UNIRII_OLT_MA5600T_2","location":null,"olts":[{"name":"MM_BM_UNIRII_OLT_MA5600T_2","ports":[{"port":"Sl.1/9","speeds":["2.5 G"],"references":1,"functions":{"SPL-2":1},"dps":[],"odbs":[{"alias":"CL2141FAN10ODB601_SPL1","lat":47.6244726244,"lng":23.5518298144,"orocAlias":"","nodeCode":"","id":"669228576"}]}]}]}

@@ -1,0 +1,1 @@
+{"code":"","name":"SB_SB_BALCESCU_OLT_MA5600T_3","location":null,"olts":[{"name":"SB_SB_BALCESCU_OLT_MA5600T_3","ports":[{"port":"Sl.18/11","speeds":["2.5 G"],"references":1,"functions":{"SPL-2":1},"dps":[],"odbs":[{"alias":"ODB41055_SP3302473_SPL1","lat":45.7925289713,"lng":24.1460157544,"orocAlias":"SB_SB_334CT_ODB41055_1","nodeCode":"334CT","id":"401745026"}]}]}]}

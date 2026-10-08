@@ -1,0 +1,1 @@
+{"code":"","name":"BN_RODNA_OLT_MA5600T_1","location":null,"olts":[{"name":"BN_RODNA_OLT_MA5600T_1","ports":[{"port":"Sl.3/2","speeds":["2.5 G"],"references":1,"functions":{"SPL-2":1},"dps":[],"odbs":[{"alias":"CL5942FAN1ODF1FO5DP1SPL3P5-SPL1","lat":47.4457397692,"lng":24.885251926,"orocAlias":"","nodeCode":"","id":"583705180"}]}]}]}

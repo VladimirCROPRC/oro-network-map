@@ -1,0 +1,1 @@
+{"code":"","name":"HD_HD_22039_OLT_MA5600T_1","location":null,"olts":[{"name":"HD_HD_22039_OLT_MA5600T_1","ports":[{"port":"Sl.4/4","speeds":["2.5 G"],"references":1,"functions":{"SPL-2":1},"dps":[],"odbs":[{"alias":"TI5988FAN11SPL8P7FO122-SPL1","lat":45.7708864262,"lng":22.9090465322,"orocAlias":"","nodeCode":"","id":"587646784"}]}]}]}

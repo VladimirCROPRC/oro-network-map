@@ -1,0 +1,1 @@
+{"code":"","name":"SV_MALINI_OLT_MA5800_X17_1","location":null,"olts":[{"name":"SV_MALINI_OLT_MA5800_X17_1","ports":[{"port":"1/9","speeds":["2.5 G"],"references":1,"functions":{"SPL-1":1},"dps":[{"alias":"Spl-1_13-FAN_SV-MAL_ONU801","lat":47.4758999092,"lng":26.0418195186,"orocAlias":"","nodeCode":"34AV4"}],"odbs":[]}]}]}

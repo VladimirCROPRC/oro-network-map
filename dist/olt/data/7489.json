@@ -1,0 +1,1 @@
+{"code":"","name":"TM_TM_VEST_OLT_MA5600T_1","location":null,"olts":[{"name":"TM_TM_VEST_OLT_MA5600T_1","ports":[{"port":"Sl.8/11","speeds":["2.5 G"],"references":1,"functions":{"SPL-2":1},"dps":[],"odbs":[{"alias":"TI5971FO34SPL11P4-SPL1","lat":45.7116428004,"lng":21.1978706952,"orocAlias":"","nodeCode":"","id":"585766838"}]}]}]}

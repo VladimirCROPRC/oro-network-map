@@ -1,0 +1,1 @@
+{"code":"","name":"BC_PODU_TURCULUI_OLT_MA5800_X2_1","location":null,"olts":[{"name":"BC_PODU_TURCULUI_OLT_MA5800_X2_1","ports":[{"port":"1/7","speeds":["2.5 G"],"references":1,"functions":{"SPL-2":1},"dps":[],"odbs":[{"alias":"ODB Raycap Splitter,8","lat":46.1906196176,"lng":27.3793762408,"orocAlias":"","nodeCode":"04BFY","id":"379036101"}]}]}]}

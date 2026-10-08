@@ -1,0 +1,1 @@
+{"code":"","name":"AB_BLAJ_OLT_MA5600T_1","location":null,"olts":[{"name":"AB_BLAJ_OLT_MA5600T_1","ports":[{"port":"Sl.1/15","speeds":["2.5 G"],"references":1,"functions":{"SPL-2":1},"dps":[],"odbs":[{"alias":"CL2127FAN20ODB2000-SPL1","lat":46.1751386217,"lng":23.9012959574,"orocAlias":"","nodeCode":"","id":"572163648"}]}]}]}

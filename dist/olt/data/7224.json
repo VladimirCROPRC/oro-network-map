@@ -1,0 +1,1 @@
+{"code":"","name":"CV_TGSEC_OLT_MA5600T_1","location":null,"olts":[{"name":"CV_TGSEC_OLT_MA5600T_1","ports":[{"port":"Sl.1/1","speeds":["2.5 G"],"references":1,"functions":{"SPL-2":1},"dps":[],"odbs":[{"alias":"CV_TGSEC_152DF_ODB80237_1","lat":45.9949485537,"lng":26.1298442728,"orocAlias":"CV_TGSEC_152DF_ODB80237_1","nodeCode":"152DF","id":"562325512"}]}]}]}

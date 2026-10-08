@@ -1,0 +1,1 @@
+{"code":"","name":"B_ML2_OLT_MA5600T_1","location":null,"olts":[{"name":"B_ML2_OLT_MA5600T_1","ports":[{"port":"Sl.3/7","speeds":["2.5 G"],"references":1,"functions":{"SPL-2":1},"dps":[],"odbs":[{"alias":"SP5020711","lat":44.4368092552,"lng":25.9385880614,"orocAlias":"B_ML2_421HR_SPL_Business_1_2","nodeCode":"421HR","id":"643409482"}]}]}]}

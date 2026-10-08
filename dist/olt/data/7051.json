@@ -1,0 +1,1 @@
+{"code":"","name":"BT_POMARLA_OLT_MA5800_X17_1","location":null,"olts":[{"name":"BT_POMARLA_OLT_MA5800_X17_1","ports":[{"port":"2/11","speeds":["2.5 G"],"references":1,"functions":{"SPL-1":1},"dps":[{"alias":"S013_T900 PO","lat":48.0625779767,"lng":26.3252015519,"orocAlias":"","nodeCode":"077AH"}],"odbs":[]}]}]}

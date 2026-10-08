@@ -1,0 +1,1 @@
+{"code":"","name":"HD_HD_22039_OLT_MA5800_X17_2","location":null,"olts":[{"name":"HD_HD_22039_OLT_MA5800_X17_2","ports":[{"port":"1/0","speeds":["2.5 G"],"references":1,"functions":{"SPL-1":1},"dps":[{"alias":"J1S_Serei","lat":45.73682252013383,"lng":22.904405946506998,"orocAlias":"","nodeCode":"223M1"}],"odbs":[]}]}]}

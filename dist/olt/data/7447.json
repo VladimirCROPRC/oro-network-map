@@ -1,0 +1,1 @@
+{"code":"","name":"SV_SATU_MARE_OLT_MA5800_X17_1","location":null,"olts":[{"name":"SV_SATU_MARE_OLT_MA5800_X17_1","ports":[{"port":"1/10","speeds":["2.5 G"],"references":1,"functions":{"SPL-1":1},"dps":[{"alias":"S19_FAN_SV-SMR_04","lat":47.8345938355,"lng":25.9935866421,"orocAlias":"","nodeCode":"34B5O"}],"odbs":[]}]}]}

@@ -1,0 +1,1 @@
+{"code":"","name":"B_MAGURELE_OLT_MA5600T_1","location":null,"olts":[{"name":"B_MAGURELE_OLT_MA5600T_1","ports":[{"port":"Sl.1/14","speeds":["2.5 G"],"references":1,"functions":{"SPL-2":1},"dps":[],"odbs":[{"alias":"BE5930SPL1P6FAN3FO11-SPL1","lat":44.3686674213,"lng":26.0142771035,"orocAlias":"","nodeCode":"420XP","id":"563332356"}]}]}]}

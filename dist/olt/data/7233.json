@@ -1,0 +1,1 @@
+{"code":"","name":"DB_TG_CENTRU_OLT_TKR_NG_MA5600T_2","location":null,"olts":[{"name":"DB_TG_CENTRU_OLT_TKR_NG_MA5600T_2","ports":[{"port":"Sl.1/7","speeds":["2.5 G"],"references":1,"functions":{"SPL-2":1},"dps":[],"odbs":[{"alias":"SP5013536","lat":44.9287534253,"lng":25.4691837025,"orocAlias":"DB_TG_160FM_ODB263_1","nodeCode":"160FM","id":"539143169"}]}]}]}

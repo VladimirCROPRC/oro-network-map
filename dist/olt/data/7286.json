@@ -1,0 +1,1 @@
+{"code":"","name":"IL_FETESTI_GARA_OLT_MA5600T_1","location":null,"olts":[{"name":"IL_FETESTI_GARA_OLT_MA5600T_1","ports":[{"port":"Sl.3/1","speeds":["2.5 G"],"references":1,"functions":{"SPL-2":1},"dps":[],"odbs":[{"alias":"SP2301028","lat":44.4037224377,"lng":27.8315149876,"orocAlias":"IL_FETESTI_GARA_230H1_SPL_Business_1_2","nodeCode":"230H1","id":"465681965"}]}]}]}

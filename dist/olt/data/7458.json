@@ -1,0 +1,1 @@
+{"code":"","name":"TL_ISACCEA_OLT_MA5600T_1","location":null,"olts":[{"name":"TL_ISACCEA_OLT_MA5600T_1","ports":[{"port":"Sl.3/14","speeds":["2.5 G"],"references":1,"functions":{"SPL-2":1},"dps":[],"odbs":[{"alias":"GA5952ODF1FAN3FO45DP1SPL1P2-SPL1","lat":45.2651449157,"lng":28.505109428,"orocAlias":"","nodeCode":"","id":"633962022"}]}]}]}

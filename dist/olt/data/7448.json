@@ -1,0 +1,1 @@
+{"code":"","name":"SV_STRAJA_OLT_MA5800_X17_1","location":null,"olts":[{"name":"SV_STRAJA_OLT_MA5800_X17_1","ports":[{"port":"1/7","speeds":["2.5 G"],"references":1,"functions":{"SPL-1":1},"dps":[{"alias":"S13_T99117","lat":47.91018734723212,"lng":25.480706371846964,"orocAlias":"","nodeCode":""}],"odbs":[]}]}]}

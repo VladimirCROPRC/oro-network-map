@@ -1,0 +1,1 @@
+{"code":"","name":"AG_PIT_GAVANA_OLT_MA5600T_1","location":null,"olts":[{"name":"AG_PIT_GAVANA_OLT_MA5600T_1","ports":[{"port":"Sl.4/11","speeds":["2.5 G"],"references":1,"functions":{"SPL-1":1},"dps":[{"alias":"S25_FAN_AG-PGV_04","lat":44.8711943115,"lng":24.8442197011,"orocAlias":"","nodeCode":"03091"}],"odbs":[]}]}]}

@@ -1,0 +1,1 @@
+{"code":"","name":"IL_MOVILITA_OLT_MA5600T_1","location":null,"olts":[{"name":"IL_MOVILITA_OLT_MA5600T_1","ports":[{"port":"Sl.2/6","speeds":["2.5 G"],"references":1,"functions":{"SPL-1":1},"dps":[{"alias":"S3","lat":45.1678423257,"lng":26.8175740887,"orocAlias":"","nodeCode":"00000"}],"odbs":[]}]}]}

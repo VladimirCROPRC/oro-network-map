@@ -1,0 +1,1 @@
+{"code":"","name":"B_DT2_OLT_MA5600T_5","location":null,"olts":[{"name":"B_DT2_OLT_MA5600T_5","ports":[{"port":"Sl.15/7","speeds":["2.5 G"],"references":1,"functions":{"SPL-2":1},"dps":[],"odbs":[{"alias":"B_RH1_41M4F_ODB98_2","lat":44.4162402626,"lng":26.0695095,"orocAlias":"B_RH1_41M4F_ODB98_2","nodeCode":"41M4F","id":"234559245"}]}]}]}

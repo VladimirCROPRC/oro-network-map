@@ -1,0 +1,1 @@
+{"code":"","name":"HR_TOPLITA_OLT_MA5600T_1","location":null,"olts":[{"name":"HR_TOPLITA_OLT_MA5600T_1","ports":[{"port":"Sl.2/8","speeds":["2.5 G"],"references":1,"functions":{"SPL-2":1},"dps":[],"odbs":[{"alias":"SP2100763","lat":46.9423528901,"lng":25.3731152169,"orocAlias":"","nodeCode":"2127U","id":"395459841"}]}]}]}

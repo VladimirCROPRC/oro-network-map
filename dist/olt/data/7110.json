@@ -1,0 +1,1 @@
+{"code":"","name":"B_DT2_OLT_MA5600T_1","location":null,"olts":[{"name":"B_DT2_OLT_MA5600T_1","ports":[{"port":"Sl.13/3","speeds":["2.5 G"],"references":1,"functions":{"SPL-1":1},"dps":[{"alias":"S201-FAN_DT1_04","lat":44.4219897468,"lng":26.0254694089,"orocAlias":"","nodeCode":"41NDL"}],"odbs":[]}]}]}

@@ -1,0 +1,1 @@
+{"code":"","name":"HD_ORASTIE_OLT_MA5800_X17_2","location":null,"olts":[{"name":"HD_ORASTIE_OLT_MA5800_X17_2","ports":[{"port":"1/1","speeds":["2.5 G"],"references":1,"functions":{"SPL-1":1},"dps":[{"alias":"J1S_Doja_S2","lat":45.84043651560084,"lng":23.20544693849207,"orocAlias":"","nodeCode":"225JV"}],"odbs":[]}]}]}

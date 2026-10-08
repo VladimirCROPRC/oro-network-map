@@ -1,0 +1,1 @@
+{"code":"","name":"CS_RS_LIBERTATII_OLT_MA5600T_1","location":null,"olts":[{"name":"CS_RS_LIBERTATII_OLT_MA5600T_1","ports":[{"port":"Sl.1/4","speeds":["2.5 G"],"references":1,"functions":{"SPL-2":1},"dps":[],"odbs":[{"alias":"TI5964ODF4FAN11FO181DP1SPL1P1-SPL1","lat":45.3225231707,"lng":21.8793603711,"orocAlias":"","nodeCode":"","id":"639810671"}]}]}]}

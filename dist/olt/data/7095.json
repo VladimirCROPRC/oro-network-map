@@ -1,0 +1,1 @@
+{"code":"","name":"B_BUF_607_OLT_MA5600T_1","location":null,"olts":[{"name":"B_BUF_607_OLT_MA5600T_1","ports":[{"port":"Sl.5/3","speeds":["2.5 G"],"references":1,"functions":{"SPL-2":1},"dps":[],"odbs":[{"alias":"BE2002FAN2SPL185P5-SPL1","lat":44.5749216596,"lng":25.9469665705,"orocAlias":"","nodeCode":"","id":"633755824"}]}]}]}

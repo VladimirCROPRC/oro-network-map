@@ -1,0 +1,1 @@
+{"code":"","name":"NT_SABASA_OLT_MA5800_X2_1","location":null,"olts":[{"name":"NT_SABASA_OLT_MA5800_X2_1","ports":[{"port":"1/9","speeds":["2.5 G"],"references":1,"functions":{"SPL-1":1},"dps":[{"alias":"S19_TT1","lat":47.1894534639,"lng":25.8023946871,"orocAlias":"","nodeCode":""}],"odbs":[]}]}]}

@@ -1,0 +1,1 @@
+{"code":"","name":"AG_PIT_PRUNDU_OLT_MA5800_X17_2","location":null,"olts":[{"name":"AG_PIT_PRUNDU_OLT_MA5800_X17_2","ports":[{"port":"1/0","speeds":["2.5 G"],"references":1,"functions":{"SPL-1":1},"dps":[{"alias":"AG_PIT_PRUNDU_2_S29_1","lat":44.8304176154,"lng":24.9104751588,"orocAlias":"NU ARE","nodeCode":"03087"}],"odbs":[]}]}]}
