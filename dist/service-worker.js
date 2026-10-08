@@ -1,4 +1,4 @@
-const CACHE="oro-network-map-20261008-integrated-1";
+const CACHE="oro-network-map-20261008-integrated-2";
 const SHELL=["/","/index.html","/network-olt.js","/network-olt.css","/olt/index.json","/manifest.webmanifest","/vendor/leaflet/leaflet.css","/vendor/leaflet/leaflet.js","/layers.json","/icons/icon-192.png","/icons/icon-512.png"];
 self.addEventListener("install",event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(SHELL)).then(()=>self.skipWaiting())));
 self.addEventListener("activate",event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));

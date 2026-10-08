@@ -1,6 +1,6 @@
 (function(){
 'use strict';
-const DATA_VERSION='20261008-integrated-1';
+const DATA_VERSION='20261008-integrated-2';
 let fiberAlarms=[],oltAlarmAliases={};
 function alarmOltName(name){const value=name.trim().toUpperCase();return (oltAlarmAliases[value]||value).trim().toUpperCase()}
 function selectAlarmOlts(){if(!selectedData)return;for(const olt of selectedData.olts){if(olt.ports.some(p=>alarmsForPort(olt.name,p.port).length))selectedOlts.add(olt.name)}}
@@ -57,7 +57,7 @@ function renderResults(){
  const q=$('search').value.trim().toUpperCase();
  const matches=index.filter(s=>(mode==='sites'?!!s.code:!s.code)&&(!q||(s.code+' '+s.name).toUpperCase().includes(q))).sort((a,b)=>Number(b.code===q)-Number(a.code===q)||Number(!!b.olts)-Number(!!a.olts)||natural(a.code||a.name,b.code||b.name));
  $('search-count').textContent=matches.length.toLocaleString('ro')+' rezultate'+(matches.length>100?' · primele 100 afișate':'');
- $('results').innerHTML=matches.slice(0,100).map(s=>`<button class="result ${selected?.id===s.id?'selected':''}" type="button" data-id="olt-${s.id}" ${selected?.id===s.id?'aria-current="true"':''}><strong>${esc(s.code||s.name)}</strong>${s.code?`<span class="name">${esc(s.name||'Denumire absentă din lista de site-uri')}</span>`:''}<span class="counts">${s.olts?s.olts+' OLT · '+s.ports.toLocaleString('ro')+' porturi':'Fără OLT în fișierul Excel'}</span></button>`).join('')||'<p class="no-results">Niciun rezultat. Încearcă alt cod sau nume.</p>';
+ $('results').innerHTML=matches.slice(0,100).map(s=>`<button class="result ${selected?.id===s.id?'selected':''}" type="button" data-id="${s.id}" ${selected?.id===s.id?'aria-current="true"':''}><strong>${esc(s.code||s.name)}</strong>${s.code?`<span class="name">${esc(s.name||'Denumire absentă din lista de site-uri')}</span>`:''}<span class="counts">${s.olts?s.olts+' OLT · '+s.ports.toLocaleString('ro')+' porturi':'Fără OLT în fișierul Excel'}</span></button>`).join('')||'<p class="no-results">Niciun rezultat. Încearcă alt cod sau nume.</p>';
 }
 async function selectSite(s){
  window.NetworkMapBridge.showPanel('olt');$('search').value=s.code||s.name;mode=s.code?'sites':'unknown';changeMode(mode);const run=++request;disposeMap();selectedOlts.clear();selectedOdbPorts.clear();downPorts.clear();blinkEnabled=true;onlyDown=false;selected=s;selectedData=null;renderResults();location.hash='olt='+encodeURIComponent(s.code||s.name);
