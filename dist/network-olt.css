@@ -57,3 +57,16 @@ body{background:#f5f8fa;color:#19313e}
  .sidebar.collapsed{background:#fff;border-color:#d9e3e9;box-shadow:0 -4px 18px #19313e20}
  .status{z-index:790}
 }
+
+.olt-workspace .olt-port{margin:0;border-top:1px solid var(--border);border-bottom:0}
+.olt-workspace .olt-port>summary{padding:12px;font-size:12px;font-weight:500;background:#f8fafc}
+.olt-workspace .olt-port>summary strong{font-size:13px}
+.olt-workspace .port-selections{display:flex;flex-wrap:wrap;gap:6px 14px;padding:10px 12px;background:#fff8e7}
+.olt-workspace .port-selections label{display:flex;align-items:center;gap:6px;font-size:12px;min-height:32px}
+.olt-workspace .odb-list{padding:0 12px 8px}
+.olt-workspace .odb-item{display:flex;gap:9px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--border);font-size:12px;cursor:pointer}
+.olt-workspace .odb-item input{margin-top:3px}.olt-workspace .odb-item span{min-width:0;overflow-wrap:anywhere}
+.olt-workspace .odb-item strong{font-weight:500}.olt-workspace .odb-item small{display:block;color:var(--muted);font-size:11px;margin-top:3px}
+@media(max-width:700px){.olt-workspace .port-selections label{min-height:44px}.olt-workspace .odb-item{min-height:44px}}
+
+.olt-workspace .olt-port:not([open])>summary::before{transform:rotate(0)}

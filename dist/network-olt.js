@@ -1,6 +1,6 @@
 (function(){
 'use strict';
-const DATA_VERSION='20261008-integrated-3';
+const DATA_VERSION='20261008-integrated-4';
 let fiberAlarms=[],oltAlarmAliases={};
 function alarmOltName(name){const value=name.trim().toUpperCase();return (oltAlarmAliases[value]||value).trim().toUpperCase()}
 function selectAlarmOlts(){if(!selectedData)return;for(const olt of selectedData.olts){if(olt.ports.some(p=>alarmsForPort(olt.name,p.port).length))selectedOlts.add(olt.name)}}
@@ -35,7 +35,7 @@ function portAlarmStyle(olt,port){
 
 const $=id=>document.getElementById('olt-'+id),esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let index=[],mode='sites',selected=null,selectedData=null,request=0;
-let selectedOlts=new Set(),selectedOdbPorts=new Set(),downPorts=new Set(),dpMap=null,dpMarkers=null,odbMarkers=null,blinkTimer=null,blinkEnabled=true,redMarkers=[],onlyDown=false;
+let selectedPorts=new Set(),selectedOdbItems=new Set(),selectedOlts=new Set(),selectedOdbPorts=new Set(),downPorts=new Set(),dpMap=null,dpMarkers=null,odbMarkers=null,blinkTimer=null,blinkEnabled=true,redMarkers=[],onlyDown=false;
 let siteMarker=null,cableGroups=null,cableVisible=new Map(),cableRun=0,cableTimer=null,cableManifestPromise=null;
 let measuring=false,measurePoints=[],measureLayer=null;
 const CABLE_SOURCE='https://oro.proconect.online/';
@@ -60,7 +60,7 @@ function renderResults(){
  $('results').innerHTML=matches.slice(0,100).map(s=>`<button class="result ${selected?.id===s.id?'selected':''}" type="button" data-id="${s.id}" ${selected?.id===s.id?'aria-current="true"':''}><strong>${esc(s.code||s.name)}</strong>${s.code?`<span class="name">${esc(s.name||'Denumire absentă din lista de site-uri')}</span>`:''}<span class="counts">${s.olts?s.olts+' OLT · '+s.ports.toLocaleString('ro')+' porturi':'Fără OLT în fișierul Excel'}</span></button>`).join('')||'<p class="no-results">Niciun rezultat. Încearcă alt cod sau nume.</p>';
 }
 async function selectSite(s){
- window.NetworkMapBridge.showPanel('olt');$('search').value=s.code||s.name;mode=s.code?'sites':'unknown';changeMode(mode);const run=++request;disposeMap();selectedOlts.clear();selectedOdbPorts.clear();downPorts.clear();blinkEnabled=true;onlyDown=false;selected=s;selectedData=null;renderResults();location.hash='olt='+encodeURIComponent(s.code||s.name);
+ window.NetworkMapBridge.showPanel('olt');$('search').value=s.code||s.name;mode=s.code?'sites':'unknown';changeMode(mode);const run=++request;disposeMap();selectedOlts.clear();selectedPorts.clear();selectedOdbItems.clear();selectedOdbPorts.clear();downPorts.clear();blinkEnabled=true;onlyDown=false;selected=s;selectedData=null;renderResults();location.hash='olt='+encodeURIComponent(s.code||s.name);
  $('detail').innerHTML='<p class="muted">Se încarcă porturile…</p>';
  try{
   const data=s.file?await fetch('olt/'+s.file+'?v='+DATA_VERSION,{cache:'no-store'}).then(r=>{if(!r.ok)throw Error();return r.json()}):{code:s.code,name:s.name,location:s.location,olts:[]};
@@ -74,40 +74,38 @@ function renderDetail(){
   const portPanel=$('port-panel');portPanel.append($('detail').querySelector('.port-tools'),$('olt-list'));document.querySelector('.olt-workspace').classList.add('has-site');
   initMap();selectAlarmOlts();renderPorts();renderMap(true);$('port-filter').addEventListener('input',renderPorts);
   $('all-olts').addEventListener('click',()=>{selectedData.olts.forEach(o=>selectedOlts.add(o.name));renderPorts();renderMap(true)});
-  $('no-olts').addEventListener('click',()=>{selectedOlts.clear();selectedOdbPorts.clear();downPorts.clear();renderPorts();renderMap(false)});
+  $('no-olts').addEventListener('click',()=>{selectedOlts.clear();selectedPorts.clear();selectedOdbItems.clear();selectedOdbPorts.clear();downPorts.clear();renderPorts();renderMap(false)});
   $('clear-down').addEventListener('click',()=>{downPorts.clear();renderPorts();renderMap(false)});
   $('blink-toggle').addEventListener('click',()=>{blinkEnabled=!blinkEnabled;updateBlink()});
   $('only-down').addEventListener('click',()=>{onlyDown=!onlyDown;$('only-down').setAttribute('aria-pressed',String(onlyDown));$('only-down').classList.toggle('active',onlyDown);renderMap(false)});
   $('olt-list').addEventListener('change',onSelectionChange);
  }
 }
+const odbKey=(olt,port,index)=>JSON.stringify([olt,port,index]);
 function renderPorts(){
  const q=$('port-filter').value.trim().toUpperCase();
- const openOlts=new Map(Array.from($('olt-list').querySelectorAll('details[data-olt]')).map(d=>[d.dataset.olt,d.open]));
+ const open=new Map(Array.from($('olt-list').querySelectorAll('details[data-olt],details[data-port-detail]')).map(d=>[d.dataset.portDetail!==undefined?'p'+d.dataset.portDetail:'o'+d.dataset.olt,d.open]));
  $('olt-list').innerHTML=selectedData.olts.map((o,oi)=>{
-  const ports=o.ports.filter(p=>(o.name+' '+p.port+' '+p.speeds.join(' ')).toUpperCase().includes(q));
+  const ports=o.ports.filter(p=>(o.name+' '+p.port+' '+p.speeds.join(' ')+' '+(p.odbs||[]).map(b=>b.alias+' '+b.orocAlias+' '+b.nodeCode).join(' ')).toUpperCase().includes(q));
   if(!ports.length)return '';
-  const checked=selectedOlts.has(o.name);
-  return `<details class="olt" data-olt="${oi}" ${openOlts.get(String(oi))!==false?'open':''}><summary><strong>${esc(o.name)}</strong><span>${ports.length} porturi</span></summary><label class="olt-select"><input type="checkbox" data-olt-check="${oi}" ${checked?'checked':''}> Afișează DP pentru ${esc(o.name)} pe hartă</label><div class="table-wrap"><table><thead><tr><th>DOWN</th><th>Placă / port</th><th>Viteză</th><th>ODB</th></tr></thead><tbody>${ports.map(p=>{
-   const down=portIsDown(o.name,p.port),pi=o.ports.indexOf(p),alarms=alarmsForPort(o.name,p.port),ontCount=portOntCount(o.name,p.port),odbCount=(p.odbs||[]).length;
-   return `<tr class="${down?'down-row':''}"><td><label class="down-choice"><input type="checkbox" data-port-check="${pi}" data-olt-index="${oi}" aria-label="DOWN ${esc(o.name)} / ${esc(p.port)}" ${down?'checked':''} ${checked?'':'disabled'}><span>${down?'DOWN':'—'}</span>${ontCount?'<small class="ont-alarm">'+ontCount+' ONT</small>':''}</label></td><td class="port-name">${esc(p.port.replace(/unset/gi,'nespecificat'))}</td><td>${p.speeds.length?p.speeds.map(s=>'<span class="speed">'+esc(s)+'</span>').join(' '):'—'}</td><td><label class="odb-choice"><input type="checkbox" data-odb-check="${pi}" data-olt-index="${oi}" aria-label="Afișează ODB ${esc(o.name)} / ${esc(p.port)}" ${selectedOdbPorts.has(portKey(o.name,p.port))?'checked':''} ${odbCount?'':'disabled'}>${odbCount}</label></td></tr>`;
-  }).join('')}</tbody></table></div></details>`;
+  return `<details class="olt" data-olt="${oi}" ${open.get('o'+oi)!==false?'open':''}><summary><strong>${esc(o.name)}</strong><span>${ports.length} porturi</span></summary><label class="olt-select"><input type="checkbox" data-olt-check="${oi}" ${selectedOlts.has(o.name)?'checked':''}> Afișează toate DP-urile acestui OLT</label>${ports.map(p=>{
+   const pi=o.ports.indexOf(p),key=portKey(o.name,p.port),odbs=p.odbs||[],all=selectedOdbPorts.has(key),count=all?odbs.length:odbs.filter((b,i)=>selectedOdbItems.has(odbKey(o.name,p.port,i))).length;
+   return `<details class="olt-port" data-port-detail="${oi}:${pi}" ${open.get('p'+oi+':'+pi)?'open':''}><summary><strong>Port ${esc(p.port.replace(/unset/gi,'nespecificat'))}</strong><span>${esc(p.speeds.join(', ')||'—')} · ${count}/${odbs.length} ODB</span></summary><div class="port-selections"><label><input type="checkbox" data-port-show="${pi}" data-olt-index="${oi}" ${selectedPorts.has(key)?'checked':''}> Arată DP din port</label><label><input type="checkbox" data-port-check="${pi}" data-olt-index="${oi}" ${downPorts.has(key)?'checked':''}> DOWN</label><label><input type="checkbox" data-odb-check="${pi}" data-olt-index="${oi}" ${count===odbs.length&&count?'checked':''} ${odbs.length?'':'disabled'}> Toate ODB-urile (${odbs.length})</label></div><div class="odb-list">${odbs.map((b,bi)=>`<label class="odb-item"><input type="checkbox" data-odb-item="${bi}" data-port-index="${pi}" data-olt-index="${oi}" ${all||selectedOdbItems.has(odbKey(o.name,p.port,bi))?'checked':''}><span><strong>${esc(b.alias||b.orocAlias||b.id||'ODB fără alias')}</strong>${b.orocAlias?'<small>ORO-C Alias: '+esc(b.orocAlias)+'</small>':''}${b.nodeCode?'<small>Node code: '+esc(b.nodeCode)+'</small>':''}</span></label>`).join('')||'<p class="olt-muted">Nu există ODB-uri asociate acestui port.</p>'}</div></details>`;
+  }).join('')}</details>`;
  }).join('')||'<p class="no-results">Niciun port corespunde filtrului.</p>';
+ $('olt-list').querySelectorAll('[data-odb-check]').forEach(input=>{const o=selectedData.olts[+input.dataset.oltIndex],p=o.ports[+input.dataset.odbCheck],count=(p.odbs||[]).filter((b,i)=>selectedOdbPorts.has(portKey(o.name,p.port))||selectedOdbItems.has(odbKey(o.name,p.port,i))).length;input.indeterminate=count>0&&count<p.odbs.length});
 }
 function onSelectionChange(event){
- const input=event.target;
- if(input.dataset.oltCheck!==undefined){
-  const o=selectedData.olts[Number(input.dataset.oltCheck)];
-  if(input.checked)selectedOlts.add(o.name);else{selectedOlts.delete(o.name);o.ports.forEach(p=>{downPorts.delete(portKey(o.name,p.port))})}
-  renderPorts();renderMap(true);
- }else if(input.dataset.odbCheck!==undefined){
-  const o=selectedData.olts[Number(input.dataset.oltIndex)],p=o.ports[Number(input.dataset.odbCheck)],key=portKey(o.name,p.port);
-  input.checked?selectedOdbPorts.add(key):selectedOdbPorts.delete(key);renderPorts();renderMap(true);
- }else if(input.dataset.portCheck!==undefined){
-  const o=selectedData.olts[Number(input.dataset.oltIndex)],p=o.ports[Number(input.dataset.portCheck)],key=portKey(o.name,p.port);
-  if(input.checked){downPorts.add(key);selectedOdbPorts.add(key)}else downPorts.delete(key);renderPorts();renderMap(true);
- }
+ const input=event.target,oi=Number(input.dataset.oltIndex);
+ if(input.dataset.oltCheck!==undefined){const o=selectedData.olts[+input.dataset.oltCheck];input.checked?selectedOlts.add(o.name):selectedOlts.delete(o.name)}
+ else if(input.dataset.portShow!==undefined){const o=selectedData.olts[oi],p=o.ports[+input.dataset.portShow],key=portKey(o.name,p.port);input.checked?selectedPorts.add(key):selectedPorts.delete(key)}
+ else if(input.dataset.odbCheck!==undefined){const o=selectedData.olts[oi],p=o.ports[+input.dataset.odbCheck],key=portKey(o.name,p.port);p.odbs.forEach((b,i)=>selectedOdbItems.delete(odbKey(o.name,p.port,i)));input.checked?selectedOdbPorts.add(key):selectedOdbPorts.delete(key)}
+ else if(input.dataset.odbItem!==undefined){const o=selectedData.olts[oi],p=o.ports[+input.dataset.portIndex],key=portKey(o.name,p.port),item=odbKey(o.name,p.port,+input.dataset.odbItem);if(selectedOdbPorts.delete(key))p.odbs.forEach((b,i)=>selectedOdbItems.add(odbKey(o.name,p.port,i)));input.checked?selectedOdbItems.add(item):selectedOdbItems.delete(item)}
+ else if(input.dataset.portCheck!==undefined){const o=selectedData.olts[oi],p=o.ports[+input.dataset.portCheck],key=portKey(o.name,p.port);if(input.checked){downPorts.add(key);selectedPorts.add(key);selectedOdbPorts.add(key)}else downPorts.delete(key)}
+ else return;
+ renderPorts();renderMap(true);
 }
+
 function initMap(){
  dpMap=window.NetworkMapBridge.map;
  dpMarkers=L.layerGroup().addTo(dpMap);odbMarkers=L.layerGroup().addTo(dpMap);
@@ -123,8 +121,8 @@ function initMap(){
 function renderMap(fit){
  clearInterval(blinkTimer);blinkTimer=null;redMarkers=[];dpMarkers.clearLayers();const points=new Map();let missing=0,downMissing=0;
  for(const o of selectedData.olts){
-  if(!selectedOlts.has(o.name))continue;
   for(const p of o.ports){
+   if(!selectedOlts.has(o.name)&&!selectedPorts.has(portKey(o.name,p.port)))continue;
    const down=portIsDown(o.name,p.port),style=portAlarmStyle(o.name,p.port);
    if(!p.dps?.length){missing++;if(down)downMissing++}
    for(const dp of p.dps||[]){
@@ -136,7 +134,7 @@ function renderMap(fit){
   }
  }
  for(const point of points.values()){
-  if(onlyDown&&!point.down&&point.rank===0)continue;
+  if(onlyDown&&!point.down&&point.rank===0&&!Array.from(point.connections.values()).some(c=>selectedPorts.has(portKey(c.olt,c.port))))continue;
   const color=point.color;
   const marker=L.circleMarker([point.lat,point.lng],{radius:7,weight:2,color:'#07151e',fillColor:color,fillOpacity:.95,down:point.down}).addTo(dpMarkers);
   marker.bindPopup('<strong>DP / splitter nivel 1</strong><div class="dp-popup">'+Array.from(point.connections.values()).map(c=>`<div><strong>${esc(c.alias||'Alias lipsă')}</strong><br>${popupAttributes(c)}${esc(c.olt)} / ${esc(c.port)}${c.down?' <b class="down-label">DOWN</b>':''}</div>`).join('')+'</div>'+locationLinks(point.lat,point.lng),{maxWidth:360});
@@ -154,10 +152,11 @@ function renderOdbs(){
  odbMarkers.clearLayers();const points=new Map();
  for(const o of selectedData.olts){
   for(const p of o.ports){
-   if(!selectedOdbPorts.has(portKey(o.name,p.port)))continue;
+   const all=selectedOdbPorts.has(portKey(o.name,p.port));
    const style=portAlarmStyle(o.name,p.port);
-   if(onlyDown&&!portIsDown(o.name,p.port)&&style.rank===0)continue;
-   for(const odb of p.odbs||[]){
+
+   for(const [bi,odb] of (p.odbs||[]).entries()){
+    if(!all&&!selectedOdbItems.has(odbKey(o.name,p.port,bi)))continue;
     const key=coordinateKey(odb);let point=points.get(key);
     if(!point){point={lat:odb.lat,lng:odb.lng,rank:0,color:'#22c55e',connections:new Map()};points.set(key,point)}
     if(style.rank>point.rank){point.rank=style.rank;point.color=style.color}
@@ -179,7 +178,7 @@ function updateBlink(){
  $('blink-toggle').textContent=blinkEnabled?'Stop blink':'Pornește blink';$('blink-toggle').disabled=!redMarkers.length;
  if(blinkEnabled&&redMarkers.length){let bright=true;blinkTimer=setInterval(()=>{bright=!bright;redMarkers.forEach(m=>m.setStyle({fillOpacity:bright?.95:.2,opacity:bright?1:.35}))},700)}
 }
-window.NetworkOlt={selectCode:async code=>{await indexReady;const match=index.find(s=>s.code?.toUpperCase()===String(code).toUpperCase());if(match)await selectSite(match);else{window.NetworkMapBridge.showPanel('olt');$('search').value='';changeMode('sites');$('search-count').textContent='Locația '+code+' nu are un cod de site OLT identificat. Caută site-ul sau denumirea OLT.'}},getSelection:()=>({selectedData,selectedOlts,selectedOdbPorts,downPorts,dpMarkers,odbMarkers})};
+window.NetworkOlt={selectCode:async code=>{await indexReady;const match=index.find(s=>s.code?.toUpperCase()===String(code).toUpperCase());if(match)await selectSite(match);else{window.NetworkMapBridge.showPanel('olt');$('search').value='';changeMode('sites');$('search-count').textContent='Locația '+code+' nu are un cod de site OLT identificat. Caută site-ul sau denumirea OLT.'}},getSelection:()=>({selectedData,selectedOlts,selectedPorts,selectedOdbItems,selectedOdbPorts,downPorts,dpMarkers,odbMarkers})};
 $('search').addEventListener('input',renderResults);
 $('results').addEventListener('click',e=>{const b=e.target.closest('[data-id]');if(b)selectSite(index.find(s=>s.id===b.dataset.id))});
 function changeMode(value){mode=value;$('sites-tab').classList.toggle('selected',mode==='sites');$('unknown-tab').classList.toggle('selected',mode==='unknown');renderResults()}
