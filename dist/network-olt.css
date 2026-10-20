@@ -72,3 +72,9 @@ body{background:#f5f8fa;color:#19313e}
 .olt-workspace .olt-port:not([open])>summary::before{transform:rotate(0)}
 
 .panel-location{flex:none;margin:8px 12px;padding:9px 12px;min-height:42px;background:#edf3f7;color:#19313e;border:1px solid #d9e3e9;border-radius:8px;font-size:14px;cursor:pointer}.panel-location:disabled{opacity:.6}.sidebar.collapsed .panel-location{display:none}
+
+
+/* KMZ area selection input */
+#map.area-selecting .leaflet-interactive,#map.area-selecting .leaflet-marker-icon,#map.area-selecting .leaflet-overlay-pane canvas{pointer-events:none!important}
+#map.area-rectangle-drag{touch-action:none;cursor:crosshair!important}
+@media(max-width:700px){.area-select-tools .map-actions button{min-height:40px}}
