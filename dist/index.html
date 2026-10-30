@@ -134,6 +134,6 @@ document.querySelectorAll('[data-workspace-panel]').forEach(button=>button.addEv
 new ResizeObserver(()=>map.invalidateSize()).observe(document.getElementById('sidebar'));
 document.getElementById('collapse').addEventListener('click',event=>{const expanded=!document.getElementById('sidebar').classList.contains('collapsed');event.currentTarget.setAttribute('aria-expanded',String(expanded));event.currentTarget.setAttribute('aria-label',expanded?'Restrânge panoul':'Extinde panoul')});
 
-    if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("service-worker.js?v=34").then(registration=>registration.update()).catch(()=>{}));
+    if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("service-worker.js?v=35").then(registration=>registration.update()).catch(()=>{}));
   </script>
 <script src="map-selection.js?v=20261023-kmz-area25-1"></script><script src="network-olt.js?v=20261023-kmz-area25-1"></script></body></html>
