@@ -1,5 +1,5 @@
-const CACHE="oro-network-map-20261031-national-incidents-v31";
-const SHELL=["/","/index.html","/network-olt.js","/network-olt.css","/map-selection.js","/olt/index.json","/manifest.webmanifest","/vendor/leaflet/leaflet.css","/vendor/leaflet/leaflet.js","/layers.json","/icons/icon-192.png","/icons/icon-512.png"];
+const CACHE="oro-network-map-20261031-national-incidents-v32";
+const SHELL=["/network-olt.js","/network-olt.css","/map-selection.js","/olt/index.json","/manifest.webmanifest","/vendor/leaflet/leaflet.css","/vendor/leaflet/leaflet.js","/layers.json","/icons/icon-192.png","/icons/icon-512.png"];
 self.addEventListener("install",event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(SHELL)).then(()=>self.skipWaiting())));
-self.addEventListener("activate",event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
+self.addEventListener("activate",event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim()).then(()=>self.clients.matchAll({type:"window"})).then(clients=>Promise.all(clients.map(client=>{const url=new URL(client.url);if(url.searchParams.get("_sw")==="32")return;url.searchParams.set("_sw","32");return client.navigate(url.href)})))));
 self.addEventListener("fetch",event=>{if(event.request.method!=="GET")return;event.respondWith(fetch(event.request).then(response=>{if(response.ok&&new URL(event.request.url).origin===self.location.origin){const copy=response.clone();caches.open(CACHE).then(cache=>cache.put(event.request,copy))}return response}).catch(()=>caches.match(event.request))) });
