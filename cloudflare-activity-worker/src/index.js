@@ -1,9 +1,4 @@
-const ADMIN_EMAILS = new Set([
-  "felix.tibrea@proconect.ro",
-  "dorin.vlaic@proconect.ro",
-  "serban.mincic@proconect.ro",
-  "vladimir.carlan@proconect.ro",
-]);
+const OWNER_EMAIL = "felix.tibrea@proconect.ro";
 
 const json = (data, status = 200) =>
   Response.json(data, {
@@ -24,10 +19,49 @@ function clean(value, maxLength = 200) {
 async function handleApi(request, env, ctx, url) {
   const email = await identityFromAccess(ctx);
   if (!email) return json({ error: "Autentificare necesară" }, 401);
-  const isAdmin = ADMIN_EMAILS.has(email);
+  const admin = await env.DB.prepare(
+    "SELECT email, can_manage_admins FROM activity_admins WHERE email = ?",
+  ).bind(email).first();
+  const isAdmin = Boolean(admin);
+  const canManageAdmins = Boolean(admin?.can_manage_admins);
 
   if (url.pathname === "/api/session" && request.method === "GET") {
-    return json({ email, isAdmin });
+    return json({ email, isAdmin, canManageAdmins });
+  }
+
+  if (url.pathname === "/api/admins" && request.method === "GET") {
+    if (!canManageAdmins) return json({ error: "Acces administrator principal necesar" }, 403);
+    const result = await env.DB.prepare(
+      "SELECT email, can_manage_admins, created_at, created_by FROM activity_admins ORDER BY email",
+    ).all();
+    return json({ owner: OWNER_EMAIL, rows: result.results || [] });
+  }
+
+  if (url.pathname === "/api/admins" && request.method === "POST") {
+    if (!canManageAdmins) return json({ error: "Acces administrator principal necesar" }, 403);
+    let input;
+    try {
+      input = await request.json();
+    } catch {
+      return json({ error: "Date invalide" }, 400);
+    }
+    const newEmail = clean(input.email, 254).toLowerCase();
+    if (!/^[^\s@]+@proconect\.ro$/.test(newEmail)) {
+      return json({ error: "Este permisă numai o adresă @proconect.ro" }, 400);
+    }
+    await env.DB.prepare(
+      "INSERT OR IGNORE INTO activity_admins (email, can_manage_admins, created_by) VALUES (?, 0, ?)",
+    ).bind(newEmail, email).run();
+    return json({ ok: true }, 201);
+  }
+
+  if (url.pathname === "/api/admins" && request.method === "DELETE") {
+    if (!canManageAdmins) return json({ error: "Acces administrator principal necesar" }, 403);
+    const target = clean(url.searchParams.get("email"), 254).toLowerCase();
+    if (!target) return json({ error: "Adresa lipsește" }, 400);
+    if (target === OWNER_EMAIL) return json({ error: "Administratorul principal nu poate fi șters" }, 400);
+    await env.DB.prepare("DELETE FROM activity_admins WHERE email = ?").bind(target).run();
+    return json({ ok: true });
   }
 
   if (url.pathname === "/api/activity" && request.method === "POST") {
