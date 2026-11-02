@@ -16,7 +16,7 @@
     {
       "binding": "DB",
       "database_name": "oro-activity-log",
-      "database_id": "REPLACE_WITH_D1_DATABASE_ID",
+      "database_id": "6fae0e7e-60a4-44fc-83a7-23c7f732a3e0",
       "migrations_dir": "migrations"
     }
   ]
