@@ -1,0 +1,23 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "oro-activity-log",
+  "main": "src/index.js",
+  "compatibility_date": "2026-11-02",
+  "routes": [
+    {
+      "pattern": "oro.proconect.online/*",
+      "zone_name": "proconect.online"
+    }
+  ],
+  "triggers": {
+    "crons": ["17 2 * * *"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "oro-activity-log",
+      "database_id": "REPLACE_WITH_D1_DATABASE_ID",
+      "migrations_dir": "migrations"
+    }
+  ]
+}
